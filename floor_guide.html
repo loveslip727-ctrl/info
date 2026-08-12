@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>영종 노인인력개발센터·자원봉사센터 안내도</title>
+<style>
+  :root{
+    --bg:#f6f3ec;
+    --ink:#25272b;
+    --line:#c9c2b2;
+    --blue:#1c3f66;
+    --blue-tint:#dbe6f2;
+    --orange:#b5590f;
+    --orange-tint:#f4e3cf;
+    --gray:#5b6470;
+    --gray-tint:#e4e6e9;
+    --accent:#c0392b;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0; padding:0; height:100%;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;
+    overflow:hidden;
+    -webkit-user-select:none; user-select:none;
+  }
+  .app{
+    display:flex; flex-direction:column;
+    height:100vh; width:100vw;
+    padding:8px 10px 6px;
+  }
+  header{
+    flex:0 0 auto;
+    border-bottom:3px solid var(--ink);
+    padding-bottom:6px; margin-bottom:4px;
+  }
+  header h1{
+    font-size:clamp(24px,2.8vw,36px);
+    margin:0 0 2px; letter-spacing:-0.5px; font-weight:800; line-height:1.2;
+    white-space:nowrap;
+  }
+  .ticker-wrap{
+    overflow:hidden; white-space:nowrap;
+    height:clamp(17px,1.7vw,22px);
+  }
+  .ticker{
+    display:inline-block;
+    animation:ticker-scroll 15s linear infinite;
+    font-size:clamp(15px,1.5vw,19px); color:#5b5b5b; font-weight:600;
+  }
+  .ticker .sep{color:#c9c2b2; margin:0 12px;}
+  @keyframes ticker-scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+  .body{
+    flex:1 1 auto;
+    display:flex; flex-direction:column; gap:8px;
+    min-height:0;
+  }
+  .map-panel{
+    flex:1 1 0;
+    background:var(--white);
+    border-radius:18px;
+    border:2px solid var(--line);
+    padding:4px;
+    min-height:0;
+    display:flex;
+  }
+  svg{width:100%; height:100%;}
+  .bottom-panel{
+    flex:0 0 auto;
+    display:flex; flex-direction:row; gap:12px;
+  }
+  .legend{
+    background:var(--white);
+    border-radius:14px;
+    border:2px solid var(--line);
+    padding:10px 16px;
+    flex:0 0 auto;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .legend h3{margin:0 0 6px; font-size:clamp(15px,1.4vw,18px); font-weight:800;}
+  .legend-row{display:flex; align-items:center; gap:10px; font-size:clamp(14px,1.3vw,17px); font-weight:700; margin-bottom:5px;}
+  .swatch{width:18px; height:18px; border-radius:5px; flex:0 0 auto;}
+  .info-panel{
+    flex:1 1 auto;
+    background:var(--ink);
+    color:var(--white);
+    border-radius:14px;
+    padding:14px 20px 12px;
+    display:flex; flex-direction:column;
+    min-height:80px;
+  }
+  .info-panel .placeholder{
+    margin:auto; text-align:center; color:#c9cdd4; font-size:clamp(17px,1.6vw,20px); font-weight:700; line-height:1.8;
+  }
+  .info-title-row{
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+    margin-bottom:8px;
+  }
+  .info-title{font-size:clamp(22px,2.4vw,30px); font-weight:800;}
+  .info-badge{
+    font-size:clamp(13px,1.2vw,15px); font-weight:700; padding:5px 12px; border-radius:999px;
+    background:rgba(255,255,255,0.15);
+  }
+  .info-desc{font-size:clamp(17px,1.8vw,21px); line-height:1.6; font-weight:500; color:#e6e8eb; flex:1 1 auto;}
+  .speak-btn{
+    margin-top:auto;
+    align-self:flex-start;
+    display:flex; align-items:center; gap:12px;
+    background:#3a6ea5; color:white; border:none;
+    padding:16px 28px; border-radius:16px;
+    font-size:clamp(18px,1.8vw,22px); font-weight:700; cursor:pointer;
+  }
+  .speak-btn:active{transform:scale(0.97);}
+
+  /* SVG map elements */
+  .corridor{fill:#eee8db; stroke:var(--line); stroke-width:4;}
+  .room{cursor:pointer;}
+  .room rect{stroke-width:4; rx:16; ry:16;}
+  .room.blue rect{fill:var(--blue-tint); stroke:var(--blue);}
+  .room.orange rect{fill:var(--orange-tint); stroke:var(--orange);}
+  .room.gray rect{fill:var(--gray-tint); stroke:var(--gray);}
+  .room.tablet rect{fill:#fff3cf; stroke:#b5860f;}
+  .room text{font-weight:700; pointer-events:none;}
+  .room.selected rect{stroke-width:6;}
+  .stub{stroke:var(--line); stroke-width:4;}
+  .flow-arrow{fill:none; stroke:#a09888; stroke-width:4; stroke-dasharray:5 15; stroke-linecap:round;}
+  .facing-line{fill:none; stroke:#b0a89a; stroke-width:3; stroke-dasharray:8 8;}
+  .facing-label{font-size:14px; font-weight:700; fill:#8f8676;}
+  .pulse{fill:#c0392b; opacity:0.9; animation:pulse-glow 1.5s ease-in-out infinite;}
+  .pulse-ring{fill:none; stroke:#c0392b; stroke-width:4; animation:pulse-ring-glow 1.5s ease-in-out infinite;}
+  .caption{font-size:16px; font-weight:700; fill:#5b5b5b;}
+  .current-badge .bg{fill:#fff3cf; stroke:#b5860f; stroke-width:2.5; rx:10;}
+  .current-badge text{font-size:15px; font-weight:800; fill:#8a5d00;}
+  @keyframes pulse-glow{
+    0%,100%{r:8; opacity:0.9;}
+    50%{r:11; opacity:0.6;}
+  }
+  @keyframes pulse-ring-glow{
+    0%,100%{r:15; stroke-width:3.5; opacity:0.8;}
+    50%{r:22; stroke-width:1.5; opacity:0.2;}
+  }
+  .caption{font-size:16px; font-weight:700; fill:#7a7362;}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <h1>영종 노인인력개발센터 &middot; 자원봉사센터 안내도</h1>
+    <div class="ticker-wrap">
+      <div class="ticker">
+        <span>👉 엘리베이터에서 나오신 후 이 화면을 참고하세요</span>
+        <span class="sep">·</span>
+        <span>필요한 장소를 눌러보세요</span>
+        <span class="sep">·</span>
+        <span>🔊 소리로 안내받을 수 있습니다</span>
+        <span class="sep">·</span>
+        <span>👉 엘리베이터에서 나오신 후 이 화면을 참고하세요</span>
+        <span class="sep">·</span>
+        <span>필요한 장소를 눌러보세요</span>
+        <span class="sep">·</span>
+        <span>🔊 소리로 안내받을 수 있습니다</span>
+        <span class="sep">·</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="body">
+
+    <div class="map-panel">
+      <svg id="mapSvg" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- horizontal corridor -->
+        <rect class="corridor" x="20" y="150" width="1240" height="130"></rect>
+
+        <!-- direction arrow -->
+        <path class="flow-arrow" d="M 1120 215 L 140 215" marker-end="url(#arrowHead)"></path>
+
+        <defs>
+          <marker id="arrowHead" markerWidth="16" markerHeight="16" refX="9" refY="5" orient="auto">
+            <path d="M0,0 L12,5 L0,10 Z" fill="#8f8676"></path>
+          </marker>
+        </defs>
+
+        <!-- elevator + entry -->
+        <g>
+          <rect x="990" y="455" width="260" height="95" rx="16" fill="#eef1f4" stroke="#7c8896" stroke-width="4"></rect>
+          <text x="1120" y="496" text-anchor="middle" font-size="26" font-weight="800" fill="#3a4551">🛗 엘리베이터</text>
+          <text x="1120" y="526" text-anchor="middle" font-size="18" font-weight="700" fill="#6b7684">여기서 내리면 시작</text>
+          <line x1="1120" y1="455" x2="1120" y2="280" class="stub"></line>
+          <text x="1150" y="375" font-size="18" font-weight="700" fill="#6b7684">↑ 정면</text>
+        </g>
+
+        <!-- ===== Rooms ABOVE corridor ===== -->
+        <!-- 교육장 (tablet) -->
+        <g class="room tablet" data-title="노인인력개발센터 교육장" data-badge="📍 태블릿 설치 위치"
+           data-desc="엘리베이터에서 올라오면 정면 오른쪽에 보이는 교육장입니다. 노인일자리 신청하는 곳입니다. 이 태블릿이 놓인 곳이 바로 이 교육장 입구이며, 안내를 시작하는 기준점입니다. 왼쪽으로 돌면 복도가 시작됩니다.">
+          <line x1="1120" y1="150" x2="1120" y2="120" class="stub"></line>
+          <rect x="1000" y="5" width="240" height="115"></rect>
+          <text x="1120" y="50" text-anchor="middle" font-size="22" font-weight="700" fill="#25272b">노인인력개발센터</text>
+          <text x="1120" y="86" text-anchor="middle" font-size="25" font-weight="800" fill="#25272b">교육장</text>
+        </g>
+
+        <!-- 탕비실 -->
+        <g class="room blue" data-title="노인인력개발센터 탕비실" data-badge="복도 위쪽 · 맞은편 창고"
+           data-desc="복도로 들어와 왼쪽으로 진입한 뒤 가장 먼저 위쪽에 보이는 방입니다. 복도 건너편 아래쪽으로 창고와 마주보고 있습니다.">
+          <line x1="880" y1="150" x2="880" y2="120" class="stub"></line>
+          <rect x="780" y="5" width="200" height="115"></rect>
+          <text x="880" y="50" text-anchor="middle" font-size="22" font-weight="700" fill="#25272b">노인인력개발센터</text>
+          <text x="880" y="86" text-anchor="middle" font-size="25" font-weight="800" fill="#25272b">탕비실</text>
+        </g>
+
+        <!-- 사무실 -->
+        <g class="room blue" data-title="노인인력개발센터 사무실" data-badge="복도 위쪽 · 맞은편 자원봉사 교육장"
+           data-desc="탕비실 다음, 복도 위쪽에 이어서 있는 사무실입니다. 복도 건너편 아래쪽으로 자원봉사센터 교육장과 마주보고 있습니다.">
+          <line x1="660" y1="150" x2="660" y2="120" class="stub"></line>
+          <rect x="560" y="5" width="200" height="115"></rect>
+          <text x="660" y="50" text-anchor="middle" font-size="22" font-weight="700" fill="#25272b">노인인력개발센터</text>
+          <text x="660" y="86" text-anchor="middle" font-size="25" font-weight="800" fill="#25272b">사무실</text>
+        </g>
+
+        <!-- 센터장실 -->
+        <g class="room blue" data-title="센터장실" data-badge="복도 위쪽"
+           data-desc="사무실 다음, 복도 위쪽에 이어서 있는 센터장실입니다.">
+          <line x1="440" y1="150" x2="440" y2="120" class="stub"></line>
+          <rect x="340" y="5" width="200" height="115"></rect>
+          <text x="440" y="50" text-anchor="middle" font-size="22" font-weight="700" fill="#25272b">노인인력개발센터</text>
+          <text x="440" y="86" text-anchor="middle" font-size="25" font-weight="800" fill="#25272b">센터장실</text>
+        </g>
+
+        <!-- 회의실 -->
+        <g class="room blue" data-title="회의실" data-badge="복도 위쪽 · 맞은편 자원봉사 사무실"
+           data-desc="센터장실 다음, 복도 왼쪽 끝 위쪽에 있는 회의실입니다. 복도 건너편 아래쪽으로 자원봉사센터 사무실과 마주보고 있습니다.">
+          <line x1="220" y1="150" x2="220" y2="120" class="stub"></line>
+          <rect x="120" y="5" width="200" height="115"></rect>
+          <text x="220" y="50" text-anchor="middle" font-size="22" font-weight="700" fill="#25272b">노인인력개발센터</text>
+          <text x="220" y="86" text-anchor="middle" font-size="25" font-weight="800" fill="#25272b">회의실</text>
+        </g>
+
+        <!-- ===== Rooms BELOW corridor ===== -->
+        <!-- 창고 -->
+        <g class="room gray" data-title="창고" data-badge="복도 아래쪽 · 탕비실 맞은편"
+           data-desc="복도 아래쪽, 탕비실 바로 건너편에 있는 창고입니다.">
+          <line x1="880" y1="280" x2="880" y2="335" class="stub"></line>
+          <rect x="780" y="335" width="200" height="115"></rect>
+          <text x="880" y="400" text-anchor="middle" font-size="26" font-weight="800" fill="#25272b">창고</text>
+        </g>
+
+        <!-- 자원봉사센터 교육장 -->
+        <g class="room orange" data-title="자원봉사센터 교육장" data-badge="복도 아래쪽 · 사무실 맞은편"
+           data-desc="복도 아래쪽, 노인인력개발센터 사무실 바로 건너편에 있는 자원봉사센터 교육장입니다.">
+          <line x1="660" y1="280" x2="660" y2="335" class="stub"></line>
+          <rect x="560" y="335" width="200" height="115"></rect>
+          <text x="660" y="380" text-anchor="middle" font-size="22" font-weight="700" fill="#25272b">자원봉사센터</text>
+          <text x="660" y="416" text-anchor="middle" font-size="25" font-weight="800" fill="#25272b">교육장</text>
+        </g>
+
+        <!-- 자원봉사센터 사무실 -->
+        <g class="room orange" data-title="자원봉사센터 사무실" data-badge="복도 아래쪽 · 회의실 맞은편"
+           data-desc="복도 아래쪽, 회의실 바로 건너편에 있는 자원봉사센터 사무실입니다. 복도 위쪽으로 노인인력개발센터 회의실과 마주보고 있습니다.">
+          <line x1="220" y1="280" x2="220" y2="335" class="stub"></line>
+          <rect x="120" y="335" width="200" height="115"></rect>
+          <text x="220" y="380" text-anchor="middle" font-size="22" font-weight="700" fill="#25272b">자원봉사센터</text>
+          <text x="220" y="416" text-anchor="middle" font-size="25" font-weight="800" fill="#25272b">사무실</text>
+        </g>
+
+        <!-- fire door -->
+        <g class="room gray" data-title="회색 방화문" data-badge="🚪 복도 왼쪽 끝"
+           data-desc="복도 왼쪽 끝에 있는 회색 방화문입니다.">
+          <rect x="20" y="160" width="80" height="110" rx="14"></rect>
+          <text x="60" y="210" text-anchor="middle" font-size="30">🚪</text>
+          <text x="60" y="240" text-anchor="middle" font-size="16" font-weight="800" fill="#5b6470">회색 방화문</text>
+        </g>
+
+        <!-- ===== Facing lines ===== -->
+        <line class="facing-line" x1="880" y1="120" x2="880" y2="335"></line>
+        <line class="facing-line" x1="660" y1="120" x2="660" y2="335"></line>
+        <line class="facing-line" x1="220" y1="120" x2="220" y2="335"></line>
+        <text x="640" y="240" text-anchor="middle" font-size="13" font-weight="700" fill="#8f8676">↕ 서로 마주 보는 공간</text>
+
+        <text x="1120" y="305" text-anchor="middle" class="caption">← 복도 따라 이동</text>
+
+        <!-- current location badge -->
+        <g class="current-badge">
+          <rect class="bg" x="990" y="108" width="170" height="28"></rect>
+          <text x="1075" y="127" text-anchor="middle">📍 현재 위치</text>
+        </g>
+
+        <!-- pulse -->
+        <circle class="pulse-ring" cx="1120" cy="120" r="15"></circle>
+        <circle class="pulse" cx="1120" cy="120" r="8"></circle>
+
+      </svg>
+    </div>
+
+    <div class="bottom-panel">
+      <div class="info-panel" id="infoPanel">
+        <div class="placeholder" id="infoPlaceholder">👆 궁금한 장소를 눌러보세요<br><span style="font-size:0.75em;color:#9aa0a8;">누르면 상세 설명이 나오고 🔊 소리로 들을 수 있어요</span></div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const rooms = document.querySelectorAll('.room');
+  const infoPanel = document.getElementById('infoPanel');
+
+  function speak(text){
+    try{
+      if(!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'ko-KR';
+      u.rate = 0.85;
+      window.speechSynthesis.speak(u);
+    }catch(e){}
+  }
+
+  rooms.forEach(r => {
+    r.addEventListener('click', () => {
+      rooms.forEach(x => x.classList.remove('selected'));
+      r.classList.add('selected');
+
+      const title = r.getAttribute('data-title');
+      const badge = r.getAttribute('data-badge') || '';
+      const desc = r.getAttribute('data-desc') || '';
+
+      infoPanel.innerHTML = `
+        <div class="info-title-row">
+          <div class="info-title">${title}</div>
+        </div>
+        ${badge ? `<div class="info-badge" style="margin-bottom:8px; display:inline-block;">${badge}</div>` : ''}
+        <div class="info-desc">${desc}</div>
+        <button class="speak-btn" id="speakBtn">🔊 소리로 듣기</button>
+      `;
+      document.getElementById('speakBtn').addEventListener('click', () => {
+        speak(title + '. ' + desc);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
