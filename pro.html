@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 사업 평가회 진행순서 및 방문 일정</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#f6f8f7; --card:#ffffff; --ink:#17302b; --sub:#5b6f69; --line:#d5dfdb;
+  --accent:#1d6b5a; --accent-soft:#e1f0ec; --gold:#b8862b; --gold-soft:#f7edd6;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#101a17; --card:#18251f; --ink:#e8f1ed; --sub:#9bb0a8; --line:#2a3d36;
+    --accent:#5fc2a8; --accent-soft:#1c3a32; --gold:#e0b45c; --gold-soft:#3a3120;
+  }
+}
+*{box-sizing:border-box}
+html{height:auto}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Noto Sans KR',system-ui,sans-serif;line-height:1.6;
+  padding:24px 16px 48px;}
+.wrap{max-width:760px;margin:0 auto}
+header{padding:8px 4px 28px;border-bottom:3px solid var(--accent);margin-bottom:28px}
+header h1{font-family:'Noto Serif KR',serif;font-weight:800;font-size:clamp(28px,6vw,40px);margin:0 0 14px;letter-spacing:-0.02em}
+.meta{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:18px;color:var(--sub)}
+.meta b{color:var(--ink);font-weight:700}
+h2{font-family:'Noto Serif KR',serif;font-size:22px;margin:32px 4px 12px;display:flex;align-items:baseline;gap:12px}
+h2 small{font-family:'Noto Sans KR',sans-serif;font-weight:500;font-size:15px;color:var(--sub)}
+.list{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.row{display:grid;grid-template-columns:150px 1fr 56px;gap:12px;align-items:center;
+  padding:16px 20px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.time{font-variant-numeric:tabular-nums;font-weight:700;font-size:18px;color:var(--accent)}
+.name{font-size:19px;font-weight:500}
+.name span{display:block;font-size:15px;color:var(--sub);font-weight:400;margin-top:2px}
+.dur{justify-self:end;font-size:14px;color:var(--sub);white-space:nowrap}
+.row.perf{background:var(--accent-soft)}
+.row.perf .name{font-weight:700}
+.row.key{background:var(--gold-soft)}
+.row.key .time{color:var(--gold)}
+.row.end{background:transparent}
+.row.end .name{color:var(--sub)}
+.total{margin:20px 4px 0;font-size:15px;color:var(--sub)}
+.notice{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:12px;padding:6px 20px;margin-bottom:8px}
+.n-item{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:18px}
+.n-item:last-child{border-bottom:0}
+.n-item b{color:var(--gold)}
+.n-item small{display:block;font-size:15px;color:var(--sub);margin-top:4px;line-height:1.5}
+.n-item a{color:var(--accent);font-weight:700}
+.who{margin:-4px 4px 12px;font-size:16px;color:var(--sub)}
+.who b{color:var(--ink)}
+.sub-h{padding:10px 20px;background:var(--accent-soft);font-weight:700;font-size:16px;color:var(--accent);border-bottom:1px solid var(--line)}
+.row.v{grid-template-columns:110px 1fr}
+
+.badge{display:inline-block;font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:20px;line-height:1.3;padding:6px 16px;border-radius:999px;margin-top:6px}
+.badge.park{background:#1d6b5a;color:#fff}
+.badge.senior{background:#c2561a;color:#fff}
+.day{margin:36px 4px 12px}
+.day h2{margin:0;display:block;font-size:24px}
+.day.park h2{border-left:8px solid #1d6b5a;padding-left:12px}
+.day.senior h2{border-left:8px solid #c2561a;padding-left:12px}
+.day .badge{margin-left:20px}
+.day.park + .list{border-top:4px solid #1d6b5a}
+.day.senior + .list, .day.senior + .who + .list{border-top:4px solid #c2561a}
+.move{display:inline-block;margin:6px 0 0 10px;padding:6px 14px;border:2px solid var(--ink);border-radius:999px;font-weight:700;font-size:18px;line-height:1.3}
+.meta .badge{margin:0;font-size:18px}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .badge.park{background:#2f9d85}
+  :root:not([data-theme="light"]) .badge.senior{background:#e0743a}
+}
+@media print{.badge{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+@media (max-width:560px){
+  .row.v{grid-template-columns:90px 1fr}
+  .n-item{grid-template-columns:1fr;gap:2px}
+  .row{grid-template-columns:1fr auto;padding:14px 16px}
+  .time{grid-column:1/2;font-size:16px}
+  .dur{grid-column:2/3;grid-row:1}
+  .name{grid-column:1/3;font-size:18px}
+}
+@media print{
+  body{background:#fff;padding:0}
+  .list{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>2026 사업 평가회</h1>
+    <div class="meta">
+      <span><b>일시</b> 11월 18일(수) 10:00 ~ 11:30</span>
+      <span><b>장소</b> 영종복합문화센터 4층</span>
+      <span><b>참석</b> <span class="badge park">공원자연지킴이 (영종)</span></span>
+    </div>
+  </header>
+
+  <div class="notice">
+    <div class="n-item"><b>주차</b><span>사업 평가회 당일(11/18) 주차비 무료</span></div>
+    <div class="n-item"><b>길안내</b><span><a href="https://loveslip727-ctrl.github.io/cultural/" target="_blank" rel="noopener">영종복합문화센터 길안내 바로가기</a><small>카카오맵 또는 네이버지도가 설치되어 있어야 길안내가 열립니다. 설치되어 있지 않으면 와이파이가 연결된 곳에서 카카오맵을 설치할 수 있도록 안내됩니다.</small></span></div>
+    <div class="n-item"><b>담당자</b><span>임태진 <a href="tel:07044462909">070-4446-2909</a></span></div>
+  </div>
+
+  <div class="day park">
+    <h2>11월 18일(수) 사업 평가회</h2>
+    <span class="badge park">공원자연지킴이 (영종) 참석</span>
+  </div>
+
+  <h2>1부 <small>10:00 ~ 10:15</small></h2>
+  <div class="list">
+    <div class="row perf">
+      <div class="time">10:00 ~ 10:15</div>
+      <div class="name">식전공연</div>
+      <div class="dur">15분</div>
+    </div>
+  </div>
+
+  <h2>2부 <small>10:15 ~ 11:30</small></h2>
+  <div class="list">
+    <div class="row">
+      <div class="time">10:15 ~ 10:16</div>
+      <div class="name">개회</div>
+      <div class="dur">1분</div>
+    </div>
+    <div class="row">
+      <div class="time">10:16 ~ 10:18</div>
+      <div class="name">국민의례</div>
+      <div class="dur">2분</div>
+    </div>
+    <div class="row">
+      <div class="time">10:18 ~ 10:23</div>
+      <div class="name">내빈소개</div>
+      <div class="dur">5분</div>
+    </div>
+    <div class="row key">
+      <div class="time">10:23 ~ 10:36</div>
+      <div class="name">우수 참여자 및 종사자 시상<span>구청장, 구의회의장, 국회의원</span></div>
+      <div class="dur">13분</div>
+    </div>
+    <div class="row">
+      <div class="time">10:36 ~ 10:49</div>
+      <div class="name">센터장님 인사말씀 및 내빈 격려사, 축사</div>
+      <div class="dur">13분</div>
+    </div>
+    <div class="row">
+      <div class="time">10:49 ~ 10:51</div>
+      <div class="name">단체 기념촬영<span>현수막</span></div>
+      <div class="dur">2분</div>
+    </div>
+    <div class="row">
+      <div class="time">10:51 ~ 10:56</div>
+      <div class="name">2026 사업결과보고 및 2027 추진계획보고</div>
+      <div class="dur">5분</div>
+    </div>
+    <div class="row">
+      <div class="time">10:56 ~ 10:59</div>
+      <div class="name">참여어르신 소감문 발표</div>
+      <div class="dur">3분</div>
+    </div>
+    <div class="row">
+      <div class="time">10:59 ~ 11:04</div>
+      <div class="name">2026년 활동 동영상 상영</div>
+      <div class="dur">5분</div>
+    </div>
+    <div class="row perf">
+      <div class="time">11:04 ~ 11:30</div>
+      <div class="name">식후공연</div>
+      <div class="dur">26분</div>
+    </div>
+    <div class="row key">
+      <div class="time">11:30 ~</div>
+      <div class="name">행사 종료 후 떡과 생수 지급<span>참석 어르신께 지급 예정</span></div>
+      <div class="dur"></div>
+    </div>
+  </div>
+
+  <div class="day senior">
+    <h2>11월 19일(목) 방문 일정</h2>
+    <span class="badge senior">시니어바람개비보안관 (영종)</span>
+    <span class="move">차량으로 이동 예정</span>
+  </div>
+  <p class="who">평가회 기념 떡을 전달하며, <b>활동일지, 안전점검회의록 등을 하루 빨리 회수합니다.</b></p>
+  <div class="list">
+    <div class="row v">
+      <div class="time">10:00</div>
+      <div class="name">영종고 (영종2)</div>
+    </div>
+    <div class="row v">
+      <div class="time">10:20</div>
+      <div class="name">하늘체육공원 (영종1)</div>
+    </div>
+    <div class="row v">
+      <div class="time">10:40</div>
+      <div class="name">운남공원 (영종동A,B)</div>
+    </div>
+    <div class="row v">
+      <div class="time">10:50</div>
+      <div class="name">롯데리아 (운서동B)</div>
+    </div>
+    <div class="row v">
+      <div class="time">11:00</div>
+      <div class="name">영마루공원 (운서동A)</div>
+    </div>
+    <div class="row v">
+      <div class="time">11:30</div>
+      <div class="name">3.1절 기념비 (용유, 마시란)</div>
+    </div>
+    <div class="row v">
+      <div class="time">11:50</div>
+      <div class="name">김숙자 조장님 자택 (대무의)</div>
+    </div>
+    <div class="row v">
+      <div class="time">12:00</div>
+      <div class="name">광명항, 소무의</div>
+    </div>
+  </div>
+
+  <div class="day park">
+    <h2>11월 20일(금) 방문 일정</h2>
+    <span class="badge park">공원자연지킴이 (영종)</span>
+    <span class="move">자전거로 이동 예정</span>
+  </div>
+  <div class="list">
+    <div class="sub-h">오전</div>
+    <div class="row v">
+      <div class="time">09:30</div>
+      <div class="name">배곶공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">09:45</div>
+      <div class="name">별빛, 달빛공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">10:00</div>
+      <div class="name">하늘체육공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">10:10</div>
+      <div class="name">구석말공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">10:30</div>
+      <div class="name">운남공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">10:50</div>
+      <div class="name">넙디공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">11:10</div>
+      <div class="name">영마루공원</div>
+    </div>
+    <div class="sub-h">오후</div>
+    <div class="row v">
+      <div class="time">13:00</div>
+      <div class="name">영마루공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">13:20</div>
+      <div class="name">넙디공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">13:40</div>
+      <div class="name">운남공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">14:00</div>
+      <div class="name">구석말공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">14:10</div>
+      <div class="name">하늘체육공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">14:20</div>
+      <div class="name">달빛, 별빛공원</div>
+    </div>
+    <div class="row v">
+      <div class="time">14:40</div>
+      <div class="name">배곶공원</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
